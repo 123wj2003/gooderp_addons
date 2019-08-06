@@ -49,7 +49,7 @@ unlink_original = models.BaseModel.unlink
 @api.multi
 def unlink(self):
     for record in self:
-        if 'state' in list(record._fields.Keys()):
+        if 'state' in list(record._fields.keys()):
             if record.state == 'done':
                 raise UserError('不能删除已确认的单据！')
 

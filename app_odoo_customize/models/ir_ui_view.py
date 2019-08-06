@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 import logging
 
@@ -11,6 +12,7 @@ class View(models.Model):
     @api.model
     def render_template(self, template, values=None, engine='ir.qweb'):
         if template in ['web.login', 'web.webclient_bootstrap']:
-            values = values or {}
+            if not values:
+                values = {}
             values["title"] = self.env['ir.config_parameter'].sudo().get_param("app_system_name", "odooApp")
         return super(View, self).render_template(template, values=values, engine=engine)
